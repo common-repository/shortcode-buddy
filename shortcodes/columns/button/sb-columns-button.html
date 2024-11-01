@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+
+    <head>
+    <title>Columns - Shortcode Buddy</title>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script type="text/javascript" src="../../../../../../wp-includes/js/tinymce/tiny_mce_popup.js"></script>
+    <script type="text/javascript">
+
+		//More JS Here Later
+
+	</script>
+    </head>
+
+    <body>
+    <form id="SBColumnsShortcode">
+      <p>
+        <label for="ColumnsType">Column Type:</label>
+        <br />
+        <br />
+        <select id="columnsselection" name="column-type">
+          <option id="none">none</option>
+          <option id="one_half">one_half (1/2)</option>
+          <option id="one_half last">one_half last (2/2)</option>
+          <option id="one_third">one_third (1/3)</option>
+          <option id="one_third last">one_third last (3/3)</option>
+          <option id="two_third">two_third (2/3)</option>
+          <option id="two_third last">two_third last (2/3)</option>
+          <option id="one_fourth">one_fourth (1/4)</option>
+          <option id="one_fourth last">one_fourth last (4/4)</option>
+          <option id="three_fourth">three_fourth (3/4)</option>
+          <option id="three_fourth last">three_fourth last (4/4)</option>
+          <option id="one_fifth">one_fifth (1/5)</option>
+          <option id="one_fifth last">one_fifth last (5/5)</option>
+          <option id="two_fifth">two_fifth (2/5)</option>
+          <option id="two_fifth last">two_fifth last (5/5)</option>
+          <option id="three_fifth">three_fifth (3/5)</option>
+          <option id="three_fifth last">three_fifth last (5/5)</option>
+          <option id="four_fifth">four_fifth (4/5)</option>
+          <option id="four_fifth last">four_fifth last (5/5)</option>
+          <option id="one_sixth">one_sixth (1/6)</option>
+          <option id="one_sixth last">one_sixth last (6/6)</option>
+          <option id="five_sixth">five_sixth (5/6)</option>
+          <option id="five_sixth last">five_sixth last (6/6)</option>
+          
+        </select>
+        <input type="hidden" id="ColumnsType" />
+        
+        
+      </p>
+      
+<script type="text/javascript">
+
+$('#columnsselection').change(function(){
+
+   var id = $(this).find(':selected')[0].id;
+
+   $('#ColumnsType').val(id);
+
+})
+
+
+</script>
+
+
+      
+<style>
+
+#disclaimer {
+	color: #444;
+	font-size: 9px;
+}
+</style>
+    
+      <p><a href="javascript:SBCTiny.insert(SBCTiny.e)" style="background: #298CBA; text-decoration: none; color: white; float: right; padding: 7px; margin-top: 14px; border-radius: 17px; border: 1px solid lightgray;">Create Shortcode</a></p>
+    </form>
+</body>
+</html>
+<script>
+
+var SBCTiny = {
+
+	e: '',
+
+	init: function(e) {
+
+		SBCTiny.e = e;
+
+		tinyMCEPopup.resingleimageToInnerSize();
+
+	},
+
+	insert: function createSBColumnsShortcode(e) {
+
+		var columntype = $('#ColumnsType').val();
+		
+		function getCurrentSelection() {
+    		window.getSelection();
+			
+		};
+		
+		var currentselection = getCurrentSelection
+		
+			
+		var output = '[sb_columns ';
+
+		if(columntype) {
+
+			output += 'type="'+columntype+'"';
+
+		}
+
+		output += ']'+currentselection+'[/sb_columns]';
+
+		tinyMCEPopup.execCommand('mceReplaceContent', false, output);
+
+		tinyMCEPopup.close();
+
+
+	}
+
+}
+
+tinyMCEPopup.onInit.add(SBCTiny.init, SBCTiny);
+
+
+
+</script>

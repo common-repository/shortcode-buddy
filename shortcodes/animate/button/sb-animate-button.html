@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+
+    <head>
+    <title>Animate - Shortcode Buddy</title>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script type="text/javascript" src="../../../../../../wp-includes/js/tinymce/tiny_mce_popup.js"></script>
+    <script type="text/javascript">
+
+		//More JS Here Later
+
+	</script>
+    </head>
+
+    <body>
+    <form id="SBAnimateShortcode">
+      <p>
+        <label for="AnimationType">Animation Type</label>
+        <br />
+        <select id="animateselection" name="animate-type">
+          <option disabled value="Attention Seekers"> -- Attention Seekers --</option>
+          <option id="none">none</option>
+          <option id="flash">flash</option>
+          <option id="bounce">bounce</option>
+          <option id="shake">shake</option>
+          <option id="tada">tada</option>
+          <option id="swing">swing</option>
+          <option id="wobble">wobble</option>
+          <option id="wiggle">wiggle</option>
+          <option id="pulsee">pulse</option>
+          <option disabled value="Flippers"> -- Flippers -- </option>
+          <option id="flip">flip</option>
+          <option id="flipInX">flipInX</option>
+          <option id="flipOutX">flipOutX</option>
+          <option id="flipInY">flipInY</option>
+          <option id="flipOutY">flipOutY</option>
+          <option disabled value="Fading Enterence"> -- Fading Enterences -- </option>
+          <option id="fadeIn">fadeIn</option>
+          <option id="fadeInUp">fadeInUp</option>
+          <option id="fadeInDown">fadeInDown</option>
+          <option id="fadeInLeft">fadeInLeft</option>
+          <option id="fadeInRight">fadeInRight</option>
+          <option id="fadeInUpBig">fadeInUpBig</option>
+          <option id="fadeInDownBig">fadeInDownBig</option>
+          <option id="fadeInLeftBig">fadeInLeftBig</option>
+          <option id="fadeInRightBig">fadeInRightBig</option>
+          <option disabled value="Fading Exits"> -- Fading Exits -- </option>
+          <option id="fadeOut">fadeOut</option>
+          <option id="fadeOutUp">fadeOutUp</option>
+          <option id="fadeOutDown">fadeOutDown</option>
+          <option id="fadeOutLeft">fadeOutLeft</option>
+          <option id="fadeOutRight">fadeOutRight</option>
+          <option id="fadeOutUpBig">fadeOutUpBig</option>
+          <option id="fadeOutDownBig">fadeOutDownBig</option>
+          <option id="fadeOutLeftBig">fadeOutLeftBig</option>
+          <option id="fadeOutRightBig">fadeOutRightBig</option>
+          <option disabled value="Bouncing Entrances"> -- Bouncing Entrances -- </option>
+          <option id="bounceIn">bounceIn</option>
+          <option id="bounceInDown">bounceInDown</option>
+          <option id="bounceInUp">bounceInUp</option>
+          <option id="bounceInLeft">bounceInRight</option>
+          <option id="bounceInRight">bounceInRight</option>
+          <option disabled value="Bouncing Exits"> -- Bouncing Exits -- </option>
+          <option id="bounceOut">bounceOut</option>
+          <option id="bounceOutDown">bounceOutDown</option>
+          <option id="bounceOutUp">bounceOutUp</option>
+          <option id="bounceOutLeft">bounceOutRight</option>
+          <option id="bounceOutRight">bounceOutRight</option>
+          <option disabled value="Rotating Entrances"> -- Rotating Entrances -- </option>
+          <option id="rotateIn">rotateIn</option>
+          <option id="rotateInDownLeft">rotateInDownLeft</option>
+          <option id="rotateInDownRight">rotateInDownRight</option>
+          <option id="rotateInUpLeft">rotateInUpLeft</option>
+          <option id="rotateInUpRight">rotateInUpRight</option>
+          <option disabled value="Rotating Exits"> -- Rotating Exits -- </option>
+          <option id="rotateOut">rotateOut</option>
+          <option id="rotateOutDownLeft">rotateOutDownLeft</option>
+          <option id="rotateOutDownRight">rotateOutDownRight</option>
+          <option id="rotateOutUpLeft">rotateOutUpLeft</option>
+          <option id="rotateOutUpRight">rotateOutUpRight</option>
+          <option disabled value="Light Speed"> -- Light Speed -- </option>
+          <option id="lightSpeedIn">lightSpeedIn</option>
+          <option id="lightSpeedOut">lightSpeedOut</option>
+          <option disabled value="Specials"> -- Specials -- </option>
+          <option id="hinge">hinge</option>
+          <option id="rollIn">rollIn</option>
+          <option id="rollOut">rollOut</option>
+        </select>
+        <input type="hidden" id="AnimateType" />
+      </p>
+      <p>
+        <label for="Duration">Animation Duration <span id="disclaimer">(In Seconds. Not Required, numbers only):</span></label>
+        <br/>
+        <input id="Duration" type="text" value="" size="45"/>
+      </p>
+      <p>
+        <label for="AnimationDelay">Animation Delay <span id="disclaimer">(In Seconds. Not Required, numbers only):</span></label>
+        <br/>
+        <input id="AnimationDelay" type="text" value="" size="45"/>
+      </p>
+      <script type="text/javascript">
+
+$('#animateselection').change(function(){
+
+   var id = $(this).find(':selected')[0].id;
+
+   $('#AnimateType').val(id);
+
+})
+
+</script>
+      
+<style>
+
+#disclaimer {
+	color: #444;
+	font-size: 9px;
+}
+</style>
+    
+      <p><a href="javascript:SBTiny.insert(SBTiny.e)" style="background: #298CBA; text-decoration: none; color: white; float: right; padding: 7px; margin-top: 14px; border-radius: 17px; border: 1px solid lightgray;">Create Shortcode</a></p>
+    </form>
+</body>
+</html><script>
+
+var SBTiny = {
+
+	e: '',
+
+	init: function(e) {
+
+		SBTiny.e = e;
+
+		tinyMCEPopup.resingleimageToInnerSize();
+
+	},
+
+	insert: function createSBAnimateShortcode(e) {
+
+		//Create gallery Shortcode
+
+		var animatetype = $('#AnimateType').val();
+
+		var duration = $('#Duration').val();
+
+		var delay = $('#AnimationDelay').val();
+			
+		var output = '[animated ';
+
+		if(animatetype) {
+
+			output += 'type="'+animatetype+'"';
+
+		}
+
+		if(duration) {
+
+			output += ' duration="'+duration+'"';
+
+		}
+
+		if(delay) {
+
+			output += ' delay="'+delay+'"';
+
+		}
+
+
+
+		
+
+		output += '][/animated]';
+
+		
+
+		tinyMCEPopup.execCommand('mceReplaceContent', false, output);
+
+		
+
+		tinyMCEPopup.close();
+
+		
+
+	}
+
+}
+
+tinyMCEPopup.onInit.add(SBTiny.init, SBTiny);
+
+</script>

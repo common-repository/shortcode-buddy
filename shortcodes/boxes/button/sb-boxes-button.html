@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+
+    <head>
+    <title>Boxes - Shortcode Buddy</title>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script type="text/javascript" src="../../../../../../wp-includes/js/tinymce/tiny_mce_popup.js"></script>
+    <script type="text/javascript">
+
+		//More JS Here Later
+
+	</script>
+    </head>
+
+    <body>
+    <form id="SBColumnsShortcode">
+      <p>
+        <label for="BoxesType">Box Type:</label>
+        <br />
+        <br />
+        <select id="boxselection" name="box-type">
+          <option id="none">none</option>
+          <option id="red">Red</option>
+          <option id="yellow">Yellow</option>
+          <option id="blue">Blue</option>
+          <option id="white">White</option>
+          <option id="green">Green</option>
+        </select>
+        <input type="hidden" id="BoxesType" />
+        
+        
+      </p>
+      
+<script type="text/javascript">
+
+$('#boxselection').change(function(){
+
+   var id = $(this).find(':selected')[0].id;
+
+   $('#BoxesType').val(id);
+
+})
+
+
+</script>
+
+
+      
+<style>
+
+#disclaimer {
+	color: #444;
+	font-size: 9px;
+}
+</style>
+    
+      <p><a href="javascript:SBCTiny.insert(SBCTiny.e)" style="background: #298CBA; text-decoration: none; color: white; float: right; padding: 7px; margin-top: 14px; border-radius: 17px; border: 1px solid lightgray;">Create Shortcode</a></p>
+    </form>
+</body>
+</html>
+<script>
+
+var SBCTiny = {
+
+	e: '',
+
+	init: function(e) {
+
+		SBCTiny.e = e;
+
+		tinyMCEPopup.resingleimageToInnerSize();
+
+	},
+
+	insert: function createSBColumnsShortcode(e) {
+
+		var boxtype = $('#BoxesType').val();
+                
+                var ed = tinyMCE.activeEditor;
+                 
+                ed.focus();
+					
+                var sel = ed.selection;
+					
+                var content = sel.getContent();
+
+			
+		var output = '[buddy_box ';
+
+		if(boxtype) {
+
+			output += 'type="'+boxtype+'"';
+
+		}
+
+		output += ']'+content+'[/buddy_box]';
+
+		tinyMCEPopup.execCommand('mceReplaceContent', false, output);
+
+		tinyMCEPopup.close();
+
+
+	}
+
+}
+
+tinyMCEPopup.onInit.add(SBCTiny.init, SBCTiny);
+
+
+
+</script>
